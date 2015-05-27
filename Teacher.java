@@ -17,11 +17,11 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author User
+ * @author 8936843
  */
-public class CommonUser extends User{
+public class Teacher extends AcademicUser{
     
-    protected final int limit; //Limite de quantos livros podem ser alguados
+    private final int limit; //Limite de quantos livros podem ser alguados
     
     
     @Override
@@ -55,7 +55,7 @@ public class CommonUser extends User{
         //Escreve os dados do usuários em arquivo
         try( FileWriter writer = new FileWriter("users.csv", true)) //Append books.csv
         {
-           writer.write("Common,");            
+           writer.write("Teacher,");
            writer.write(""+this.name);
            writer.write(",");
            writer.write(""+this.numberOfRentedBooks);
@@ -65,12 +65,12 @@ public class CommonUser extends User{
         }
     }
     
-    CommonUser(){
-        
-        this.limit = 2;
+    Teacher(){
+        this.limit = 6;
         this.numberOfRentedBooks = 0;
         
         this.writeFile();        
+
     }
     
 }

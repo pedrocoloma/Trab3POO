@@ -17,14 +17,12 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author User
+ * @author 8936843
  */
-public class CommonUser extends User{
+public class Student extends AcademicUser {
     
-    protected final int limit; //Limite de quantos livros podem ser alguados
+    private final int limit; //Limite de quantos livros podem ser alguados
     
-    
-    @Override
     public void writeFile(){
         // Le um inteiro do arquivo numberOfBooks.txt que eh o numero de usuarios da biblioteca
         
@@ -55,7 +53,7 @@ public class CommonUser extends User{
         //Escreve os dados do usuários em arquivo
         try( FileWriter writer = new FileWriter("users.csv", true)) //Append books.csv
         {
-           writer.write("Common,");            
+           writer.write("Student,");
            writer.write(""+this.name);
            writer.write(",");
            writer.write(""+this.numberOfRentedBooks);
@@ -65,12 +63,12 @@ public class CommonUser extends User{
         }
     }
     
-    CommonUser(){
-        
-        this.limit = 2;
+    
+    
+    Student(){
+        this.limit = 4;
         this.numberOfRentedBooks = 0;
         
         this.writeFile();        
     }
-    
 }

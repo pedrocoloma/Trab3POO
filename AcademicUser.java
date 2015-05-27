@@ -9,6 +9,6 @@ package trabalho3;
  *
  * @author User
  */
-public class AcademicUser extends User{
+public abstract class AcademicUser extends User{
     
 }
