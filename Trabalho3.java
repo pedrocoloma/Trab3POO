@@ -25,7 +25,6 @@ public class Trabalho3 {
         
         boolean exitflag = false;
         String cmd, cmdAux;
-        String aux;
         Scanner s = new Scanner (System.in);
 
         // CRIA OS ARQUIVOS
@@ -109,11 +108,11 @@ public class Trabalho3 {
            
 //------------------------------------------------------------------------------        
 //Command Loop        
-        
+        String aux;
         while(true){
             System.out.println("----------------------------------------------------");            
             System.out.println("1.Print All Users\t2.Print All Books");
-            System.out.println("N.New Rental\tR.Return Book\t");
+            System.out.println("N.New Rental\tR.Return Book\tL.Print Log");
             System.out.println("B.Insert Book\tU.Insert User\tT.Time Leap\nQ.Quit\n");
             cmd = s.next();
             
@@ -132,10 +131,16 @@ public class Trabalho3 {
                 if(cmdAux.equalsIgnoreCase("T")){
                     TextBook t1 = new TextBook();
                     lib.listaDeLivros.add(t1);
+                    
+                    aux = (""+t1.getBookID());
+                    lib.writeLog("Adm", "Inserted Text Book", aux);
                 }
                 else if(cmdAux.equalsIgnoreCase("G")){
                     GeneralBook b1 = new GeneralBook();
-                    lib.listaDeLivros.add(b1);                    
+                    lib.listaDeLivros.add(b1);
+                    
+                    aux = (""+b1.getBookID());
+                    lib.writeLog("Adm", "Inserted General Book", aux);                    
                 }
             }//END OF INSERT BOOKS
             
@@ -147,16 +152,25 @@ public class Trabalho3 {
                     
                 if(cmdAux.equalsIgnoreCase("S")){
                     Student s1 = new Student();
-                    //verificasuspensao
                     lib.listaDeUsuarios.add(s1);
+                    
+                    aux = (""+s1.getID());
+                    lib.writeLog("Adm", "Inserted Student", aux);                                        
                 }
                 else if(cmdAux.equalsIgnoreCase("T")){
                     Teacher t1 = new Teacher();
-                    lib.listaDeUsuarios.add(t1);                    
+                    lib.listaDeUsuarios.add(t1);      
+                    
+                    aux = (""+t1.getID());
+                    lib.writeLog("Adm", "Inserted Teacher", aux);                    
                 }
+                
                 else if(cmdAux.equalsIgnoreCase("C")){
                     CommonUser c1 = new CommonUser();
-                    lib.listaDeUsuarios.add(c1);                    
+                    lib.listaDeUsuarios.add(c1);        
+                    
+                    aux = (""+c1.getID());
+                    lib.writeLog("Adm", "Inserted Common", aux);                     
                 }
             }//END OF INSERT USER
             
@@ -167,8 +181,16 @@ public class Trabalho3 {
             else if(cmd.equalsIgnoreCase("N")){//NEW RENTAL
                 lib.rentBook();
             }            
+            else if(cmd.equalsIgnoreCase("L")){//NEW RENTAL
+                lib.printLog();
+            }             
             
-            
+            else if(cmd.equalsIgnoreCase("T")){//TIME LEAP
+                aux = lib.libraryTime;                
+                lib.timeLeap();
+                lib.writeLog("Adm", "Initiated Time Leap from",aux);                                    
+            }
+
             
             else if(cmd.equalsIgnoreCase("Q")){// QUIT
                 //Deleta versão antiga dos arquivos
