@@ -1,12 +1,10 @@
 # Trabalho 3 de POO - Sistema de Biblioteca
 Repositório do Trabalho 3 da matéria de SSC0103 - Programação Orientada a Objetos.<br />
 Descrição do trabalho: https://goo.gl/krggc4<br />
-<br />
 
-## Autores:<br />
+## Autores
 João Victor Guimarães - 8936843<br />
 Pedro Felipe Coloma - 8936781<br />
-<br />
 
 ## Informações Gerais
 ### Versões usadas
