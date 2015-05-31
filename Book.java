@@ -100,17 +100,17 @@ public class Book {
     void printBook(){
         System.out.println("BOOK ID: " + this.bookID);    
         System.out.println("TYPE: " + this.type);
-        System.out.println("NAME: " + this.title);
-        System.out.println("NAME: " + this.author);
+        System.out.println("TITLE: " + this.title);
+        System.out.println("AUTHOR: " + this.author);
         
         if(this.renterID != -1){
             System.out.println("RENT DATE: " + this.rentDate);
             System.out.println("RETURN DATE: " + this.returnDate);
             System.out.println("RENTER ID: " + this.renterID);
         }
-        
-        System.out.println("Book was not rented");
-
+        else{
+            System.out.println("Book was not rented");
+        }
         System.out.println("");    
     }
 
