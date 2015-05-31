@@ -23,6 +23,7 @@ public class User {
     protected int userID;
     protected int numberOfRentedBooks; // numero de livros com o usuario
     protected boolean active;
+    protected String reactivationDate;
     
     // Getters
     public int getLimit(){
@@ -48,13 +49,21 @@ public class User {
         return this.type;
     }
     
-    // Setters
-    public void setID(int id){
-        this.userID = id;
+    public String getReactivationDate(){
+        return this.reactivationDate;
     }
+    
+    
+    // Setters
+    /*public void setID(int id){
+        this.userID = id;
+    }*/
     public void setActive(boolean active){
         this.active = active;
     }
+    public void setReactivationDate(String reactivationDate){
+        this.reactivationDate = reactivationDate;
+    }    
     public void decNumberOfRentedBooks(){ // decrementa o numero de livros com o usuario
         this.numberOfRentedBooks -= 1;
     }
@@ -62,13 +71,21 @@ public class User {
         this.numberOfRentedBooks += 1;
     }
 
+
+    
     
     public void printUser(){
             System.out.println("USER ID: " + this.userID);    
             System.out.println("TYPE: " + this.type);
             System.out.println("NAME: " + this.name);
             System.out.println("BOOKS CURRENTLY RENTED: " + this.numberOfRentedBooks);
-            System.out.println("ACTIVE: "+this.active);
+            if(this.active==true){
+                System.out.println("ACTIVE: "+this.active);            
+            }
+            else if(this.active==false){
+                System.out.println("ACTIVE: "+this.active);
+                System.out.println("REACTIVATION ON: "+this.reactivationDate);
+            }            
             System.out.println("");
     }
     
@@ -78,15 +95,12 @@ public class User {
         //Escreve os dados do usuários em arquivo
         try( FileWriter writer = new FileWriter("users.csv", true)) //Append books.csv
         {
-           writer.write(""+this.userID);
-           writer.write(",");
-           writer.write(""+this.type);
-           writer.write(",");           
-           writer.write(""+this.name);
-           writer.write(",");
-           writer.write(""+this.numberOfRentedBooks);
-           writer.write(",");
-           writer.write(""+this.active);           
+           writer.write(""+this.userID+",");
+           writer.write(""+this.type+",");
+           writer.write(""+this.name+",");
+           writer.write(""+this.numberOfRentedBooks+",");
+           writer.write(""+this.active+",");           
+           writer.write(""+this.reactivationDate);           
            writer.write("\n");           
            writer.close();
         } catch (IOException ex) {
@@ -101,15 +115,12 @@ public class User {
         File f = new File("users.csv"); 
         PrintWriter a = new PrintWriter(f);
         try (BufferedWriter bw = new BufferedWriter(a)) {
-            bw.write(""+this.userID);
-            bw.write(",");
-            bw.write(""+this.type);
-            bw.write(",");
-            bw.write(""+this.name);
-            bw.write(",");
-            bw.write(""+this.numberOfRentedBooks);
-            bw.write(",");
-            bw.write(""+this.active);
+            bw.write(""+this.userID+",");
+            bw.write(""+this.type+",");
+            bw.write(""+this.name+",");
+            bw.write(""+this.numberOfRentedBooks+",");
+            bw.write(""+this.active+",");
+            bw.write(""+this.reactivationDate);
             bw.write("\n");
             System.out.println("Chegou aqui!!"+this.numberOfRentedBooks);
             bw.close();
@@ -149,19 +160,22 @@ public class User {
         this.limit = 0;
         this.numberOfRentedBooks=0;
         this.active = true;
+        this.reactivationDate = "00/00/0000";        
         Scanner s = new Scanner (System.in);
         System.out.println("Enter the Name: ");
         this.name = s.nextLine();
     }
     
     //Construtor para gerar instância do objeto a partir de dados de arquivo
-    User(int userID, String type, String name, int limit ,int numberOfRentedBooks, boolean active){
+    User(int userID, String type, String name, int limit ,int numberOfRentedBooks, boolean active, String reactivationDate){
         this.userID = userID;
         this.name = name;
         this.type = type;
         this.limit = limit;        
         this.numberOfRentedBooks = numberOfRentedBooks;
         this.active = active;
+        this.reactivationDate = reactivationDate;        
+        
     }
     
 }
