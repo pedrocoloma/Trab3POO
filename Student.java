@@ -18,7 +18,7 @@ public class Student extends User {
         super();
         this.type = ("Student");
         this.limit = 4;
-        //this.writeFile();        //Construtor para a primeira inserÃ§Ã£o em arquivo, ativar append
+        //this.writeFile();        //Construtor para a primeira inserção em arquivo, ativar append
     }
     
     Student(int userID, String type, String name, int numberOfRentedBooks, boolean active){
