@@ -77,6 +77,46 @@ public class Book {
     }
     
     void writeFile(){
+        
+        try(FileWriter writer = new FileWriter("books.csv", true)) //Append books.csv
+        {
+           
+           writer.write(""+this.bookID+",");
+           writer.write(""+this.type+",");
+           writer.write(""+this.title+",");
+           writer.write(""+this.author+",");
+           writer.write(""+this.year+",");
+           writer.write(""+this.rentDate+",");           
+           writer.write(""+this.returnDate+","); 
+           writer.write(""+this.renterID); 
+           writer.write("\n");  
+           writer.close();                      
+        } catch (IOException ex) {
+            Logger.getLogger(Trabalho3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
+    
+    void printBook(){
+        System.out.println("BOOK ID: " + this.bookID);    
+        System.out.println("TYPE: " + this.type);
+        System.out.println("NAME: " + this.title);
+        System.out.println("NAME: " + this.author);
+        
+        if(this.renterID != -1){
+            System.out.println("RENT DATE: " + this.rentDate);
+            System.out.println("RETURN DATE: " + this.returnDate);
+            System.out.println("RENTER ID: " + this.renterID);
+        }
+        
+        System.out.println("Book was not rented");
+
+        System.out.println("");    
+    }
+
+        
+    // construtor  
+    Book(){
         // Le um inteiro do arquivo numberOfBooks.txt
         Scanner scanner = null;
         int x = 0;
@@ -104,33 +144,6 @@ public class Book {
         escritor.close();
         scanner.close();
         
-        try(FileWriter writer = new FileWriter("books.csv", true)) //Append books.csv
-        {
-           
-           writer.write(""+this.bookID+",");
-           writer.write(""+this.type+",");
-           writer.write(""+this.title+",");
-           writer.write(""+this.author+",");
-           writer.write(""+this.year+",");
-           writer.write(""+this.rentDate+",");           
-           writer.write(""+this.returnDate+","); 
-           if(this.renterID != -1){
-                writer.write(""+this.renterID); 
-                //writer.close();
-           }
-           else{
-                writer.write("-1"); 
-                //;writer.close();
-           }
-           writer.write("\n");           
-        } catch (IOException ex) {
-            Logger.getLogger(Trabalho3.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-        
-        
-    // construtor  
-    Book(){
         Scanner s = new Scanner (System.in);
 
         System.out.println("Enter the Title: ");
@@ -147,8 +160,6 @@ public class Book {
         this.renterID = -1;
         this.rentDate = "00/00/0000";
         this.returnDate = "00/00/0000";
-
-        //this.writeFile();
     }
         
     Book(int bookID, String type, String title, String author, int year, String rentDate, String returnDate, int renterID){
@@ -164,37 +175,6 @@ public class Book {
         this.renterID = renterID;
     }
 
-    /*
-    Book(){
-        Scanner s = new Scanner (System.in);
 
-        System.out.println("Enter the Title: ");
-        this.title = s.nextLine();
-            
-        System.out.println("Enter the Author: ");
-        this.author = s.nextLine();
-        
-        System.out.println("Enter the Year: ");
-        this.year = s.nextInt();
-        
-        //this.renter = null;
-        this.rentDate = null;
-        this.returnDate = null;
-        
-
-        this.writeFile();
-        /*String fileContent;
-        SimpleDateFormat s1 = new SimpleDateFormat("dd/MM/yyyy");  
-        String renDate = s1.format(this.rentDate.getTime());
-        
-        SimpleDateFormat s2 = new SimpleDateFormat("dd/MM/yyyy");  
-        String retDate = s2.format(this.returnDate.getTime());
-        */
-        
-        //fileContent = ("" + String.valueOf(this.bookID) + this.title + this.author + this.year + this.renter.getName() /*+ renDate + retDate*/);
-        //System.out.println(fileContent);
-        
-        
-    //}*/
     
 }
