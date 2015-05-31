@@ -37,15 +37,7 @@ public class Trabalho3 {
         
         Library lib = new Library();
      
-        if(!books.exists()){//Cria o arquivo se não existente
-            try {
-                books.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(Trabalho3.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-           // lib.montaListaDeLivros();
-        }
+        
         if(!users.exists()){//Cria o arquivo se não existente
             try {
                 users.createNewFile();
@@ -56,6 +48,19 @@ public class Trabalho3 {
         }else{
             lib.montaListaDeUsuarios();
         }
+        
+        
+        if(!books.exists()){//Cria o arquivo se não existente
+            try {
+                books.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(Trabalho3.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+           lib.montaListaDeLivros();
+        }        
+        
+        
         if(!log.exists()){//Cria o arquivo se não existente
             try {
                 log.createNewFile();
@@ -63,6 +68,7 @@ public class Trabalho3 {
                 Logger.getLogger(Trabalho3.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
+    
         
         //Verifica se existe o arquivo com o numero de usuários. Se não existe, cria o arquivo e o inicializa com 0
         if(!numberOfUsers.exists()){
@@ -100,42 +106,39 @@ public class Trabalho3 {
                 Logger.getLogger(Trabalho3.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-//------------------------------------------------------------------------------
-//Deleta versão antiga dos arquivos
-    //books.delete();
-    Path path = Paths.get("users.csv");
-    try {
-            
-        Files.delete(path);
-        //Files.deleteIfExists(path);
-    } catch (NoSuchFileException x) {
-        System.err.format("%s: no such" + " file or directory%n", path);
-    } catch (DirectoryNotEmptyException x) {
-        System.err.format("%s not empty%n", path);
-    } catch (IOException x) {
-        // File permission problems are caught here.
-         System.err.println(x);
-    }
+           
 //------------------------------------------------------------------------------        
 //Command Loop        
         
         while(true){
-            System.out.println("B.Insert Book\tU.Insert User\tN.New Rental\nQ.Quit\n");
+            System.out.println("----------------------------------------------------");            
+            System.out.println("1.Print All Users\t2.Print All Books");
+            System.out.println("N.New Rental\tR.Return Book\t");
+            System.out.println("B.Insert Book\tU.Insert User\tT.Time Leap\nQ.Quit\n");
             cmd = s.next();
             
-            if(cmd.equalsIgnoreCase("B")){//INSERT BOOKS
+            if(cmd.equals("1")){
+                lib.printAllUsers();
+            }
+            
+            else if(cmd.equals("2")){
+                lib.printAllBooks();
+            }            
+            
+            else if(cmd.equalsIgnoreCase("B")){//INSERT BOOKS
                 System.out.println("T. Text Book\tG.Regular Book\nQ.Quit\n");
                 cmdAux = s.next();
                     
                 if(cmdAux.equalsIgnoreCase("T")){
                     TextBook t1 = new TextBook();
-                    //lib.listaDeUsuarios.add(t1)
+                    lib.listaDeLivros.add(t1);
                 }
                 else if(cmdAux.equalsIgnoreCase("G")){
                     GeneralBook b1 = new GeneralBook();
+                    lib.listaDeLivros.add(b1);                    
                 }
             }//END OF INSERT BOOKS
+            
             
             else if(cmd.equalsIgnoreCase("U")){//INSERT USER
                 
@@ -144,6 +147,7 @@ public class Trabalho3 {
                     
                 if(cmdAux.equalsIgnoreCase("S")){
                     Student s1 = new Student();
+                    //verificasuspensao
                     lib.listaDeUsuarios.add(s1);
                 }
                 else if(cmdAux.equalsIgnoreCase("T")){
@@ -156,11 +160,46 @@ public class Trabalho3 {
                 }
             }//END OF INSERT USER
             
+            else if(cmd.equalsIgnoreCase("R")){//NEW RENTAL
+                lib.returnBook();
+            }                        
+            
             else if(cmd.equalsIgnoreCase("N")){//NEW RENTAL
                 lib.rentBook();
             }            
+            
+            
+            
             else if(cmd.equalsIgnoreCase("Q")){// QUIT
-                // ## SALVA AS LISTAS NOS ARQUIVOS
+                //Deleta versão antiga dos arquivos
+                
+                Path path = Paths.get("users.csv");
+                try {
+                    Files.delete(path);
+                    //Files.deleteIfExists(path);
+                } catch (NoSuchFileException x) {
+                    System.err.format("%s: no such" + " file or directory%n", path);
+                } catch (DirectoryNotEmptyException x) {
+                    System.err.format("%s not empty%n", path);
+                } catch (IOException x) {
+                    // File permission problems are caught here.
+                     System.err.println(x);
+                }
+                Path path2 = Paths.get("books.csv");
+                try {
+
+                    Files.delete(path2);
+                    //Files.deleteIfExists(path);
+                } catch (NoSuchFileException x) {
+                    System.err.format("%s: no such" + " file or directory%n", path2);
+                } catch (DirectoryNotEmptyException x) {
+                    System.err.format("%s not empty%n", path2);
+                } catch (IOException x) {
+                    // File permission problems are caught here.
+                     System.err.println(x);
+                } 
+                
+                lib.writeBooks();
                 lib.writeUsers();
                 System.out.println("End of program.");
                 break;
