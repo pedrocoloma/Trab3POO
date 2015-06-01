@@ -135,14 +135,14 @@ public class Trabalho3 {
                     lib.listaDeLivros.add(t1);
                     
                     aux = (""+t1.getBookID());
-                    lib.writeLog("Adm", "Inserted Text Book", aux);
+                    lib.writeLog("Adm", "Inserted Text Book ", aux);
                 }
                 else if(cmdAux.equalsIgnoreCase("G")){
                     GeneralBook b1 = new GeneralBook();
                     lib.listaDeLivros.add(b1);
                     
                     aux = (""+b1.getBookID());
-                    lib.writeLog("Adm", "Inserted General Book", aux);                    
+                    lib.writeLog("Adm", "Inserted General Book ", aux);                    
                 }
             }//END OF INSERT BOOKS
             
@@ -157,14 +157,14 @@ public class Trabalho3 {
                     lib.listaDeUsuarios.add(s1);
                     
                     aux = (""+s1.getID());
-                    lib.writeLog("Adm", "Inserted Student", aux);                                        
+                    lib.writeLog("Adm", "Inserted Student ", aux);                                        
                 }
                 else if(cmdAux.equalsIgnoreCase("T")){
                     Teacher t1 = new Teacher();
                     lib.listaDeUsuarios.add(t1);      
                     
                     aux = (""+t1.getID());
-                    lib.writeLog("Adm", "Inserted Teacher", aux);                    
+                    lib.writeLog("Adm", "Inserted Teacher ", aux);                    
                 }
                 
                 else if(cmdAux.equalsIgnoreCase("C")){
@@ -172,7 +172,7 @@ public class Trabalho3 {
                     lib.listaDeUsuarios.add(c1);        
                     
                     aux = (""+c1.getID());
-                    lib.writeLog("Adm", "Inserted Common", aux);                     
+                    lib.writeLog("Adm", "Inserted Common ", aux);                     
                 }
             }//END OF INSERT USER
             
@@ -190,7 +190,7 @@ public class Trabalho3 {
             else if(cmd.equalsIgnoreCase("T")){//TIME LEAP
                 aux = lib.libraryTime;                
                 lib.timeLeap();
-                lib.writeLog("Adm", "Initiated Time Leap from",aux);                                    
+                lib.writeLog("Adm", "Initiated Time Leap from ",aux);                                    
             }
 
             
