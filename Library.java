@@ -239,10 +239,10 @@ public class Library {
     }
     
     
-    public void delayCheck(int book){
+    public void delayCheck(int pos){
         //Calcula se o livro está atrasado e modifica os valores do usuário
 
-        int renter = this.userExists(this.listaDeLivros.get(book).getRenterID());//Obtem a posição na lista de usuarios do ID em questão
+        int renter = this.userExists(this.listaDeLivros.get(pos).getRenterID());//Obtem a posição na lista de usuarios do ID em questão
         
         if(renter == -1 || renter == -2){
             return;
@@ -261,7 +261,7 @@ public class Library {
 	}        
 	try {
  
-		returnDate = formatter.parse(this.listaDeLivros.get(book).getReturnDate());
+		returnDate = formatter.parse(this.listaDeLivros.get(pos).getReturnDate());
  
 	} catch (ParseException e) {
 		e.printStackTrace();
@@ -287,7 +287,7 @@ public class Library {
         this.listaDeUsuarios.get(renter).setActive(false);
         Integer days = (int)(long) diff;
         System.out.println("\nWARNING: The rental of the book");
-        this.listaDeLivros.get(book).printBook();
+        this.listaDeLivros.get(pos).printBook();
         System.out.println("is expired by " + days + " days.");        
         
         if("00/00/0000".equals(this.listaDeUsuarios.get(renter).getReactivationDate())){//Usuario não tinha nenhuma pendência até o momento
@@ -335,7 +335,7 @@ public class Library {
         
     }
     
-    public void reactivationCheck(int user){
+    public void reactivationCheck(int pos){
     
         Date libTime = null;
         Date reactivationDate = null;
@@ -349,7 +349,7 @@ public class Library {
 		e.printStackTrace();
 	}        
 	try {
-            reactivationDate = formatter.parse(this.listaDeUsuarios.get(user).getReactivationDate());
+            reactivationDate = formatter.parse(this.listaDeUsuarios.get(pos).getReactivationDate());
  
 	} catch (ParseException e) {
 		e.printStackTrace();
@@ -368,10 +368,10 @@ public class Library {
                 + diff + " days.");*/
         
         if(diff >= 0){//É ou passou da data
-            this.listaDeUsuarios.get(user).setActive(true);
-             this.listaDeUsuarios.get(user).setReactivationDate("00/00/0000");
+            this.listaDeUsuarios.get(pos).setActive(true);
+             this.listaDeUsuarios.get(pos).setReactivationDate("00/00/0000");
              
-            String auxLog1 = (""+this.listaDeUsuarios.get(user).getID());        
+            String auxLog1 = (""+this.listaDeUsuarios.get(pos).getID());        
             this.writeLog("System","Reactivated", auxLog1);             
             return;
         }        
@@ -576,19 +576,13 @@ public class Library {
                 System.out.println("WARNING: FLUX CAPACITOR ACTIVATED\nINITIATING TIME LEAP");
                 this.libraryTime = newTime;
                 
-                //Apaga as listas e reinicializa-as
-                this.listaDeUsuarios.clear();
-                this.listaDeLivros.clear();
-                try {
-                    this.montaListaDeLivros();
-                } catch (IOException ex) {
-                    Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
+                //Recheca todas as validades
+                for (int i = 0; i < this.listaDeLivros.size(); i++) {
+                    this.delayCheck(i);
                 }
-                try {
-                    this.montaListaDeUsuarios();
-                } catch (IOException ex) {
-                    Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                for (int i = 0; i < this.listaDeUsuarios.size(); i++) {
+                    this.reactivationCheck(i);
+                }          
                 System.out.println("TIME LEAP COMPLETED");
             }
             else{
@@ -674,7 +668,7 @@ public class Library {
         this.listaDeUsuarios = new ArrayList();
         this.libraryTime = strDate;
         
-        System.out.println("Current Date: " + strDate);
+        //System.out.println("Current Date: " + strDate);
    }
     
 }
