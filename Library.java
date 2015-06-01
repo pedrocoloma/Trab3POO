@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package trabalho3;
 
 import java.io.BufferedReader;
@@ -133,7 +129,7 @@ public class Library {
         
         String auxLog1 = (""+userIDaux);        
         String auxLog2 = (""+bookIDaux);        
-        this.writeLog(auxLog1,"Rented", auxLog2);
+        this.writeLog(auxLog1,"Rented ", auxLog2);
             
     }
     
@@ -235,7 +231,7 @@ public class Library {
         
         String auxLog1 = (""+userIDaux);        
         String auxLog2 = (""+bookIDaux);        
-        this.writeLog(auxLog1,"Returned", auxLog2);
+        this.writeLog(auxLog1,"Returned ", auxLog2);
     }
     
     
@@ -304,7 +300,7 @@ public class Library {
             //Escreve no Log
             String auxLog1 = (""+this.listaDeUsuarios.get(renter).getID());        
             String auxLog2 = ("Changed Reactivation Date to" + reactivationDateString);
-            this.writeLog("System","Deactivated", auxLog1);                        
+            this.writeLog("System","Deactivated ", auxLog1);                        
             this.writeLog("System",auxLog2, auxLog1);            
             return;
         }
@@ -328,7 +324,7 @@ public class Library {
             
             //Escreve no Log
             String auxLog1 = (""+this.listaDeUsuarios.get(renter).getID());        
-            String auxLog2 = ("Changed Reactivation Date to" + reactivationDateString);
+            String auxLog2 = ("Changed Reactivation Date to " + reactivationDateString);
             this.writeLog("System",auxLog2, auxLog1);     
             return;        
         }
