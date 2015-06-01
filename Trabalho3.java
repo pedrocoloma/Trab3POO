@@ -1,6 +1,6 @@
 /*
  * TRABALHO 3 - P.O.O.
- * OVERVIEW:
+ * OVERVIEW: Implementar um sistema de biblioteca
  * 
  * João Victor Lopes da Silva Guimarães 8936843
  * Pedro Felipe Coloma de Araújo 8936781
@@ -110,6 +110,8 @@ public class Trabalho3 {
 //Command Loop        
         String aux;
         while(true){
+            System.out.println("----------------------------------------------------");            
+            System.out.println("Current Date: " + lib.libraryTime);
             System.out.println("----------------------------------------------------");            
             System.out.println("1.Print All Users\t2.Print All Books");
             System.out.println("N.New Rental\tR.Return Book\tL.Print Log");
