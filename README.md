@@ -6,13 +6,14 @@ Descrição do trabalho: https://goo.gl/krggc4<br />
 João Victor Guimarães - 8936843<br />
 Pedro Felipe Coloma - 8936781<br />
 
+## VERSÃO 1.0 - Disponível na seção de Release
 ## Informações Gerais
 ### Versões usadas
 Usamos a IDE Netbeans 8.0.2 e Java 7.
 
 ### Uso de arquivos externos
 O programa registra todas as informações em dois arquivos com extensão CSV: *books.csv* e *users.csv*.<br />
-O programa também registra dois arquivos TXT auxiliares: *numberOfBooks.txt* e *numberOfUsers.txt*. esses arquivos con´tem, respectivamente, o número de livros e o número de usuários já cadastrados.<br />
+O programa também registra dois arquivos TXT auxiliares: *numberOfBooks.txt* e *numberOfUsers.txt*. esses arquivos contem, respectivamente, o número de livros e o número de usuários já cadastrados.<br />
 
 ### Critério de suspenão de usuário
 O usuário é suspenso um dia por cada dia de atraso na devolução do livro.
@@ -30,6 +31,9 @@ Ex1: *31/05/2015,15,Rented,10* == Usuário de ID 15 alugou Livro de ID 10 em 31/
 Ex2: *31/05/2015,Adm,Inserted Teacher,10* == Administrador inseriu um novo Professor de ID 10 em 31/05/2015<br />
 Ex3: *31/05/2015,System,Deactivated,10* == Sistema desativou o usuário de ID 10 em 31/05/2015<br />
 Ex4: *29/12/2035,Adm,Initiated Time Leap from,31/05/2015* == Administrador viajou no tempo de 2015 para 2035<br />
+
+###.jar
+O Arquivo.jar está dentro do arquivo *dist* em *Trabalho3*
 
 ## Descrição dos arquivos:<br />
 Library.java:Classe encarregada de lidar com os arquivos e com a data.<br />
